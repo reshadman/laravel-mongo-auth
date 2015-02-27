@@ -13,7 +13,7 @@ class LmAuthServiceProvider extends ServiceProvider {
 	public function boot()
 	{
 		$this->publishes([
-			__DIR__.'lmauth.php' => config_path('lmauth	.php'),
+			__DIR__.'/lmauth.php' => config_path('lmauth	.php'),
 		]);
 
 		$this->app['auth']->extend('lmauth', function(Application $app){
@@ -33,6 +33,8 @@ class LmAuthServiceProvider extends ServiceProvider {
 	public function register()
 	{
 		$config = $config = $this->app['config']->get('lmauth');
+
+		if(is_null($config)) return; // In case there is no config
 
 		if($config['use_default_collection_provider']) {
 
