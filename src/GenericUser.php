@@ -45,8 +45,13 @@ class GenericUser extends BaseGenericUser implements UserContract {
         return $this->attributes[$this->getConfig()['auth_password_field']];
     }
 
+    /**
+     * Get remember token value
+     *
+     * @return string
+     */
     public function getRememberToken()
     {
-
+        return $this->attributes[$this->getConfig()['auth_remember_token_field']];
     }
 }
