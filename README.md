@@ -22,13 +22,27 @@ $this->app['auth']->extend('lmauth', function(Application $app){
 
     $config = $app['config']->get('lmauth');
 
-	return new MongoDbUserProvider($app['lmauth.collection'], $app['hash'], $config);
+	return new MongoDbUserProvider(
+	    $app['lmauth.collection'], // Should be bound to an instance of \MongoCollection
+	    $app['hash'],
+	    $config
+	);
 
 });
 ```
 The above code needs ```$app['lmauth.collection']``` to be bound on the correct instance of ```MongoCollection```. If you set the ```use_default_collection_provider``` config option to true the a new binding will be created. which you should set other config options for it in the config file. 
 
-> You can also create your own driver with another driver name and pass your own config and mongo collection instance to it.
+You may also create your own driver with another driver name and pass your own config and mongo collection instance to it.
+
+```php
+<?php
+Auth::extend('my-lmauth', function($app) {
+    $config = $app['config']->get('lmauth'); // or your desired
+    $mongoCollection = $app['global_mongo_connection']->myDb->myCollection;
+
+    return new \Reshadman\LmAuth\MongoDbUserProvider($mongoCollection, $app['hash'], $config);
+});
+```
 
 #### The ```default_connection_closure``` config
 If you pass a closure to this config key then the package will use this closure to get the ```MongoClient``` connection to connect to mongodb. Usefull when using Doctrine Mongo db package or alternatives.
