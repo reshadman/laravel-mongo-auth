@@ -4,6 +4,7 @@ This package does not require any external MongoDB related dependencies except t
 ### Installation
 1. Run ```composer require reshadman/lmauth``` in your project's composer root.
 2. Add the ```Reshadman\LmAuth\LmAuthServiceProvider``` service provider to your app.
+4. Run ```php artisan vendor:publish``` command to generate package config files.
 3. In ```auth.php``` config set the ```driver``` to ```lmauth``` :
 ```php
 <?php return [
@@ -30,7 +31,8 @@ $this->app['auth']->extend('lmauth', function(Application $app){
 
 });
 ```
-The above code needs ```$app['lmauth.collection']``` to be bound on the correct instance of ```MongoCollection```. If you set the ```use_default_collection_provider``` config option to true the a new binding will be created. which you should set other config options for it in the config file. 
+The above code needs ```$app['lmauth.collection']``` to be available in IoC container which is an instance of ```MongoCollection```.
+If you set the ```use_default_collection_provider``` config option to true, the package will create a new binding for that.
 
 You may also create your own driver with another driver name and pass your own config and mongo collection instance to it.
 
