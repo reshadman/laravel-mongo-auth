@@ -13,7 +13,7 @@ class LmAuthServiceProvider extends ServiceProvider {
 	public function boot()
 	{
 		$this->publishes([
-			__DIR__.'/lmauth.php' => config_path('lmauth	.php'),
+			__DIR__.'/lmauth.php' => config_path('lmauth.php'),
 		]);
 
 		$this->app['auth']->extend('lmauth', function(Application $app){
