@@ -8,6 +8,7 @@
         }
     ],
     "require": {
+        "ext-mongo": "*",
         "illuminate/contracts": "5.0.*",
         "illuminate/support": "5.0.*",
         "illuminate/auth" : "5.0.*"

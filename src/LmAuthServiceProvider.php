@@ -32,7 +32,7 @@ class LmAuthServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
-		$config = $config = $this->app['config']->get('lmauth');
+		$config = $this->app['config']->get('lmauth');
 
 		if(is_null($config)) return; // In case there is no config
 
@@ -44,7 +44,7 @@ class LmAuthServiceProvider extends ServiceProvider {
 
 				$this->app->singleton('lmauth.connection', $connection);
 
-			}else {
+			} else {
 
 				$this->app->singleton('lmauth.connection', function(Application $app){
 
