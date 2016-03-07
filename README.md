@@ -1,8 +1,8 @@
 ## Laravel Native MongoDB Authentication Driver
 This package does not require any external MongoDB related dependencies except the Php MongoDB Driver and simply uses ```Auth::extend()``` to extend the native Laravel Auth module.
 
-### Installation 
-1. Run ```composer require reshadman/lmauth``` in your project's composer root.
+### Installation
+1. Run ```composer require reshadman/laravel-mongo-auth``` in your project's composer root.
 2. Add the ```Reshadman\LmAuth\LmAuthServiceProvider``` service provider to your app.
 4. Run ```php artisan vendor:publish``` command to generate package config files.
 3. In ```auth.php``` config set the ```driver``` to ```lmauth``` :
@@ -14,7 +14,7 @@ This package does not require any external MongoDB related dependencies except t
 ```
 
 ### Approach
-An instance of ```MongoCollection``` is passed to ```\Reshadman\LmAuth\MongoDbUserProvider``` like below : 
+An instance of ```MongoCollection``` is passed to ```\Reshadman\LmAuth\MongoDbUserProvider``` like below :
 
 From ```\Reshadman\LmAuth\LmAuthServiceProvider``` :
 ```php
@@ -57,6 +57,3 @@ If you pass a closure to this config key then the package will use this closure 
 ];
 ```
 If you set the above option to ``` null ``` the the package will use a singleton shared instance ( ```new \MongoClient()```) which has ```lmauth.connection``` key in the container.
-
-
-
